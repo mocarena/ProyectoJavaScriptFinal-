@@ -1,38 +1,40 @@
-// definir valor del ticket
-const ticket = 200;
+// Definir valor del ticket
+const Ingreso = 3000;
 
-// definir los descuentos
+// Definir los descuentos
+let descDoná = 0.30;
+let descEnviá = 0.40;
+let descSumate = 0.25;
 
-let descEstudiante = 0.80;
-let descTrainee = 0.50;
-let descJunior = 0.15;
-
-// tomar elementos
-
+// Tomar elementos
 const formulario = document.getElementById('formulario');
-const categoria = document.getElementById('categoria');
-const cantidad = document.getElementById('cantidad');
+const Opciones = document.getElementById('Opciones');
+const Cantidad = document.getElementById('Cantidad');
 const totalPagar = document.getElementById('totalAPagar');
-const btnResumen = document.getElementById('resumen');
+const btnEnviar = document.getElementById('Enviar');
 
-function calcularPago(){
-    let total = cantidad.value * ticket;
-    // condicionar por descuento
+function calcularPago() {
+    let cantidad = parseFloat(Cantidad.value);
+    let ingreso = Ingreso; // Use Ingreso directly as it's a constant value
+    let descuento = 0;
 
-    switch (categoria.value) {
-        case "estudiante":
-            total = total - (total * descEstudiante);
+    // Condition for discount
+    switch (Opciones.value) {
+        case "doná":
+            descuento = descDoná;
             break;
-        
+        // Add cases for other options if needed
+
         default:
             break;
     }
 
-    totalPagar.textContent = `Total a Pagar: $ ${total}`;
+    let total = cantidad * ingreso * (1 - descuento);
 
+    totalPagar.textContent = `Total a Pagar: u$s ${total.toFixed(2)}`;
 }
 
-btnResumen.addEventListener('click',(e)=>{
-    e.preventDefault()
-    calcularPago()
+btnEnviar.addEventListener('click', function(e) {
+    e.preventDefault();
+    calcularPago();
 });
