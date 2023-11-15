@@ -11,7 +11,7 @@ const formulario = document.getElementById('formulario');
 const Opciones = document.getElementById('Opciones');
 const Cantidad = document.getElementById('cantidadInput');
 const totalPagar = document.getElementById('totalAPagar');
-const btnEnviar = document.getElementById('btnEnviar');
+const btnSubmit = document.getElementById('btnEnviar');
 
 // Event Listener del botón enviar
 function calcularPago() {
@@ -30,11 +30,10 @@ function calcularPago() {
             total = total - (total * descSumate);
         default:
             break;
-}}
-
-    totalPagar.textContent = `Total a Pagar: $ ${total}`;
-
-btnEnviar.addEventListener('click', (e)=>{
+        }
+totalPagar.textContent = `Total a Pagar $${total}`;
+}
+btnSubmit.addEventListener('click', (e) => {
     e.preventDefault()
     calcularPago()
 }
